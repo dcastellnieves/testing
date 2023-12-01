@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>es.ull.esit.algorithms.sort.quicksort</groupId>
-  <artifactId>quicksort</artifactId>
+  <artifactId>testing</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>quicksort</name>
+  <name>testing</name>
   <url>http://maven.apache.org</url>
 
   <properties>
