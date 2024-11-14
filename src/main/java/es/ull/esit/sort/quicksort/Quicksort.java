@@ -1,105 +1,37 @@
 package es.ull.esit.sort.quicksort;
 
-public class Quicksort  {
-	private int[] numbers;
-	private int number;
-	public void sort(int[] values) {
-		// Check for empty or null array
-		if (values ==null || values.length==0){
-			return;
-		}
-		this.numbers = values;
-		number = values.length;
-		quicksort(0,  number - 1);
-	}
+public class Quicksort {
 
+    public static void sort(int[] array) {
+        quicksort(array, 0, array.length - 1);
+    }
 
+    private static void quicksort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+            quicksort(array, low, pivotIndex - 1);
+            quicksort(array, pivotIndex + 1, high);
+        }
+    }
 
-	private void quicksort(int low, int high) {
+    private static int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = low - 1;
 
-		int i;
-		int j;
-		i = low;
-		j = high;
+        for (int j = low; j < high; j++) {
+            if (array[j] <= pivot) {
+                i++;
+                swap(array, i, j);
+            }
+        }
 
-		// Get the pivot element from the middle of the list
+        swap(array, i + 1, high);
+        return i + 1;
+    }
 
-		int pivot = numbers[low + (high-low) / 2];
-
-
-
-		// Divide into two lists
-
-		while (i <= j) {
-
-			// If the current value from the left list is smaller then the pivot
-
-			// element then get the next element from the left list
-
-			while (numbers[i] < pivot) {
-
-				i++; // incremento
-
-			}
-
-			// If the current value from the right list is larger then the pivot
-
-			// element then get the next element from the right list
-
-			while (numbers[j] > pivot) {
-
-				j--;
-				
-				//decremento
-
-			}
-
-
-
-			// If we have found a values in the left list which is larger then
-
-			// the pivot element and if we have found a value in the right list
-
-			// which is smaller then the pivot element then we exchange the
-
-			// values.
-
-			// As we are done we can increase i and j
-
-			if (i <= j) {
-
-				exchange(i, j);
-
-				i++;
-
-				j--;
-
-			}
-
-		}
-
-		// Recursion
-
-		if (low < j)
-
-			quicksort(low, j);
-
-		if (i < high)
-
-			quicksort(i, high);
-
-	}
-
-
-
-	private void exchange(int i, int j) {
-
-		int temp = numbers[i];
-
-		numbers[i] = numbers[j];
-
-		numbers[j] = temp;
-
-	}
-
+    private static void swap(int[] array, int i, int j) {
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }
